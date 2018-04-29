@@ -194,6 +194,32 @@ public class OrientationModule extends ReactContextBaseJavaModule implements Lif
 
     }
 
+    @ReactMethod
+    public void getSpecificOrientation(Callback callback) {
+        String orientation = this.getSpecificOrientationString(getCurrentActivity());
+        callback.invoke(null, orientation);
+    }
+
+    private String getSpecificOrientationString(Activity activity) {
+        if (activity != null) {
+            int orientation = activity.getWindowManager().getDefaultDisplay().getRotation();
+            switch (orientation) {
+                case Surface.ROTATION_0:
+                    return "PORTRAIT";
+                case Surface.ROTATION_270:
+                    return "LANDSCAPE-RIGHT";
+                case Surface.ROTATION_180:
+                    return "PORTRAITUPSIDEDOWN";
+                case Surface.ROTATION_90:
+                    return "LANDSCAPE-LEFT";
+                default:
+                    return "UNKNOWN";
+            }
+        } else {
+            return ("UNKNOWN");
+        }
+    }
+
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
 
