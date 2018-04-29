@@ -78,7 +78,7 @@ module.exports = {
     }
     listeners[key].remove();
     listeners[key] = null;
-  }
+  },
 
   removeOrientationListener(cb) {
     var key = getKey(cb);
