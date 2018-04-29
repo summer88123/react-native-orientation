@@ -71,6 +71,15 @@ module.exports = {
       });
   },
 
+  removeSensorBaseOrientationListener(cb) {
+    var key = getKey(cb);
+    if (!listeners[key]) {
+      return;
+    }
+    listeners[key].remove();
+    listeners[key] = null;
+  }
+
   removeOrientationListener(cb) {
     var key = getKey(cb);
 
